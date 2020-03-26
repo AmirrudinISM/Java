@@ -5,7 +5,8 @@ class SimpleRestaurantSystem{
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    //DECISION
+    //checks how much the total cost is and how much the user has paid
+    //returns true if the total cost has been completely paid off
     public static boolean paid(double totalPrice, double inPrice){
     	if (inPrice >= totalPrice){
     		return true;
@@ -17,34 +18,27 @@ class SimpleRestaurantSystem{
 
     public static void main(String args[]){ 
 
-        //output
+        //variables for every ordering operation
         String foodList = "";
-        //output
         double totalPrice = 0;
-        //output
         boolean payStat = false; 
-        
-        //input
         char dineIn = ' ';
-        //input
         boolean dineInStat = false;
-        //input
         int quant = 0; 
-        //input
         double paidPrice = 0;
-        //input
         double taxVal = 0.0;
-        //input
         double taxPrice = 0;
-        //input
+        //variable for action selection
         int sel = 0; 
 
+        //menu
         String foodName[] = new String[4]; 
         foodName[0] = "Nasi Goreng Ayam"; 
         foodName[1] = "Chicken Chop    "; 
         foodName[2] = "Fish & Chips    "; 
         foodName[3] = "Fettuccine      "; 
 
+        //prices for every corresponding food
         double price[] = new double[4]; 
         price[0] = 5.0; 
         price[1] = 8.0; 
@@ -57,8 +51,10 @@ class SimpleRestaurantSystem{
         System.out.println("**************WELCOME TO WARUNG MAK LIMAH!****************");
         System.out.println("**********************************************************");
 
+
+        //prompt & get user wether to dine-in or take-away
         while (dineInStat != true){
-            System.out.println("Would you like to DINE-IN? [y/n]");
+            System.out.println(">>>Would you like to DINE-IN? [y/n]");
             dineIn = new Scanner(System.in).next().charAt(0);
             if (dineIn == 'y'){
                 System.out.println("DINE-IN selected!");
@@ -74,23 +70,25 @@ class SimpleRestaurantSystem{
             }
         }
 
+        //loop for ordering food
         while (sel != 6) {
 
-            System.out.println("=======================MAIN COURSES=======================");
+            //displays menu
+            System.out.println("========================MAIN COURSES=======================");
             for (int i = 1; i <= 4; i++) {
                 System.out.println(i + ".      " + foodName[i - 1] + "         | RM" + df.format(price[i - 1]));
             }
-            System.out.println("------------------------YOUR ORDER-------------------------");
+            
+            //displays order placed
+            System.out.println("-------------------------YOUR ORDER------------------------");
             System.out.println(foodList);
-            System.out.println("++++++++++++++++++++TOTAL PRICE: RM" + df.format(totalPrice) + "++++++++++++++++++++");
+            System.out.println("++++++++++++++++++++TOTAL PRICE: RM" + df.format(totalPrice) + "+++++++++++++++++++");
             System.out.println("5. Make payment");
             System.out.println("6. Cancel & Exit System");
-
-            System.out.println("Please select food to order or proceed to payment: ");
+            System.out.println(">>>Please select food to order or proceed to payment: ");
 
             sel = new Scanner(System.in).nextInt();
 
-            // DECISION
             switch (sel) {
 
                 case 1:
@@ -121,24 +119,30 @@ class SimpleRestaurantSystem{
                     break;
 
                 case 5:
-                    // DECISION
+                    //checks whether the user has ordered anything or not by checking the price.
+                    //if the total price is 0, the that implies that the user has not ordered anything
                     if (totalPrice > 0) {
+                        //6% GST is added if the user dines in.
                         if (dineIn == 'y'){
                             taxPrice = totalPrice * taxVal;
                             totalPrice += taxPrice;
-
-                            
                         }
-                        System.out.println("------------------------------------------------------------");
+
+                        System.out.println("-----------------------------------------------------------");
                         System.out.println("Tax Price: RM"+df.format(taxPrice)+", Total price (after tax): RM" + df.format(totalPrice));
-                        System.out.println("------------------------------------------------------------");
+                        System.out.println("-----------------------------------------------------------");
+                        
+                        //prompts & get user for payment until the order is totally paid off
                         while (payStat != true) {
-                            System.out.print("Insert payment:");
-                            paidPrice += (new Scanner(System.in).nextDouble());
-                    		payStat = paid(totalPrice,paidPrice);
+                            System.out.print(">>>Insert payment:");
+                            paidPrice += new Scanner(System.in).nextDouble();
+                            payStat = paid(totalPrice,paidPrice);
                     		if (payStat == false){
+                                //displays current paid amount and remaining amount to let users know how much more is to be paid
+                                System.out.println("------------------------------------------------------------");
                     			System.out.println("Current paid amount: RM"+ df.format(paidPrice));
-                    			System.out.println("Remaining amount   : RM"+ df.format(totalPrice-paidPrice)+"\nPlease insert more cash");	
+                    			System.out.println("Remaining amount   : RM"+ df.format(totalPrice-paidPrice)+"\nPlease insert more cash");
+                                System.out.println("------------------------------------------------------------");	
                     		}
                     	}
                     	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
