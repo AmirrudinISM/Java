@@ -54,7 +54,7 @@ class SimpleRestaurantSystem{
 
         //prompt & get user wether to dine-in or take-away
         while (dineInStat != true){
-            System.out.println(">>>Would you like to DINE-IN? [y/n]");
+            System.out.print(">>>Would you like to DINE-IN? [y/n]: ");
             dineIn = new Scanner(System.in).next().charAt(0);
             if (dineIn == 'y'){
                 System.out.println("DINE-IN selected!");
@@ -85,34 +85,34 @@ class SimpleRestaurantSystem{
             System.out.println("++++++++++++++++++++TOTAL PRICE: RM" + df.format(totalPrice) + "+++++++++++++++++++");
             System.out.println("5. Make payment");
             System.out.println("6. Cancel & Exit System");
-            System.out.println(">>>Please select food to order or proceed to payment: ");
+            System.out.print(">>>Please select food to order or proceed to payment: ");
 
             sel = new Scanner(System.in).nextInt();
 
             switch (sel) {
 
                 case 1:
-                    System.out.println(foodName[0] + " selected. Enter quantity:");
+                    System.out.print(foodName[0] + " selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
                     foodList += foodName[0] + ", x" + quant + "\n";
                     totalPrice += price[0] * quant;
                     break;
                 case 2:
-                    System.out.println(foodName[1] + " selected. Enter quantity:");
+                    System.out.print(foodName[1] + " selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
                     foodList += foodName[1] + ", x" + quant + "\n";
                     totalPrice += price[1] * quant;
                     break;
 
                 case 3:
-                    System.out.println(foodName[2] + " selected. Enter quantity:");
+                    System.out.print(foodName[2] + " selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
                     foodList += foodName[2] + ", x" + quant + "\n";
                     totalPrice += price[2] * quant;
                     break;
 
                 case 4:
-                    System.out.println(foodName[3] + " selected. Enter quantity:");
+                    System.out.print(foodName[3] + " selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
                     foodList += foodName[3] + ", x" + quant + "\n";
                     totalPrice += price[3] * quant;
