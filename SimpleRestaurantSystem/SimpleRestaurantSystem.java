@@ -31,22 +31,6 @@ class SimpleRestaurantSystem{
         //variable for action selection
         int sel = 0; 
 
-        //menu
-        String foodName[] = new String[4]; 
-        foodName[0] = "Nasi Goreng Ayam"; 
-        foodName[1] = "Chicken Chop    "; 
-        foodName[2] = "Fish & Chips    "; 
-        foodName[3] = "Fettuccine      "; 
-
-        //prices for every corresponding food
-        double price[] = new double[4]; 
-        price[0] = 5.0; 
-        price[1] = 8.0; 
-        price[2] = 6.5; 
-        price[3] = 7.5;
-
-
-
         System.out.println("**********************************************************");
         System.out.println("**************WELCOME TO WARUNG MAK LIMAH!****************");
         System.out.println("**********************************************************");
@@ -75,9 +59,10 @@ class SimpleRestaurantSystem{
 
             //displays menu
             System.out.println("========================MAIN COURSES=======================");
-            for (int i = 1; i <= 4; i++) {
-                System.out.println(i + ".      " + foodName[i - 1] + "         | RM" + df.format(price[i - 1]));
-            }
+            System.out.println("1.       Nasi Goreng Ayam         | RM5.00");
+            System.out.println("2.       Chicken Chop             | RM8.00");
+            System.out.println("3.       Fish & Chips             | RM6.50");
+            System.out.println("4.       Fettuccine               | RM7.50");
             
             //displays order placed
             System.out.println("-------------------------YOUR ORDER------------------------");
@@ -92,30 +77,30 @@ class SimpleRestaurantSystem{
             switch (sel) {
 
                 case 1:
-                    System.out.print(foodName[0] + " selected. Enter quantity: ");
+                    System.out.print("Nasi Goreng Ayam selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
-                    foodList += foodName[0] + ", x" + quant + "\n";
-                    totalPrice += price[0] * quant;
+                    foodList += "Nasi Goreng Ayam , x" + quant + "\n";
+                    totalPrice += 5.0 * quant;
                     break;
                 case 2:
-                    System.out.print(foodName[1] + " selected. Enter quantity: ");
+                    System.out.print("Chicken Chop selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
-                    foodList += foodName[1] + ", x" + quant + "\n";
-                    totalPrice += price[1] * quant;
+                    foodList += "Chicken Chop , x" + quant + "\n";
+                    totalPrice += 8.0 * quant;
                     break;
 
                 case 3:
-                    System.out.print(foodName[2] + " selected. Enter quantity: ");
+                    System.out.print("Fish & Chips selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
-                    foodList += foodName[2] + ", x" + quant + "\n";
-                    totalPrice += price[2] * quant;
+                    foodList += "Fish & Chips, x" + quant + "\n";
+                    totalPrice += 6.5 * quant;
                     break;
 
                 case 4:
-                    System.out.print(foodName[3] + " selected. Enter quantity: ");
+                    System.out.print("Fettuccine selected. Enter quantity: ");
                     quant = new Scanner(System.in).nextInt();
-                    foodList += foodName[3] + ", x" + quant + "\n";
-                    totalPrice += price[3] * quant;
+                    foodList += "Fettuccine, x" + quant + "\n";
+                    totalPrice += 7.5 * quant;
                     break;
 
                 case 5:
