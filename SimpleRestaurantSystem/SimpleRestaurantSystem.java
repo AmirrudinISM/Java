@@ -1,6 +1,11 @@
 import java.util.Scanner;
 import java.text.DecimalFormat; 
 
+//Owner: Amirrudin Ismail Bin Adlan Rahim
+//ID: 5221322-0036
+//Course: Principles of Computer Programming
+//Institution: University of Kuala Lumpur
+
 class SimpleRestaurantSystem{ 
 
     private static DecimalFormat df = new DecimalFormat("0.00");
