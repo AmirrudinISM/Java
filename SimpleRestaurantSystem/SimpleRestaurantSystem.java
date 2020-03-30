@@ -26,6 +26,7 @@ class SimpleRestaurantSystem{
         //variables for every ordering operation
         String foodList = "";
         double totalPrice = 0;
+        double remainingAmount = 0;
         boolean payStat = false; 
         char dineIn = ' ';
         boolean dineInStat = false;
@@ -126,15 +127,17 @@ class SimpleRestaurantSystem{
                         while (payStat != true) {
                             System.out.print(">>>Insert payment:");
                             paidPrice += new Scanner(System.in).nextDouble();
+                            remainingAmount = totalPrice-paidPrice;
                             payStat = paid(totalPrice,paidPrice);
                     		if (payStat == false){
                                 //displays current paid amount and remaining amount to let users know how much more is to be paid
                                 System.out.println("------------------------------------------------------------");
                     			System.out.println("Current paid amount: RM"+ df.format(paidPrice));
-                    			System.out.println("Remaining amount   : RM"+ df.format(totalPrice-paidPrice)+"\nPlease insert more cash");
+                    			System.out.println("Remaining amount   : RM"+ df.format(remainingAmount)+"\nPlease insert more cash");
                                 System.out.println("------------------------------------------------------------");	
                     		}
-                    	}
+                        }
+                        System.out.println("Remaining amount   : RM"+ df.format(remainingAmount));
                     	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     	System.out.println("||Thank you for your purchase!||");
                     	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
