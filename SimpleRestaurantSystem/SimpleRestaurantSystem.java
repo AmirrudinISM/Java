@@ -10,17 +10,6 @@ class SimpleRestaurantSystem{
 
     private static DecimalFormat df = new DecimalFormat("0.00");
 
-    //checks how much the total cost is and how much the user has paid
-    //returns true if the total cost has been completely paid off
-    public static boolean paid(double totalPrice, double inPrice){
-    	if (inPrice >= totalPrice){
-    		return true;
-    	}
-    	else{
-    		return false;
-    	}
-    }
-
     public static void main(String args[]){ 
 
         //variables for every ordering operation
@@ -128,13 +117,20 @@ class SimpleRestaurantSystem{
                             System.out.print(">>>Insert payment:");
                             paidPrice += new Scanner(System.in).nextDouble();
                             remainingAmount = totalPrice-paidPrice;
-                            payStat = paid(totalPrice,paidPrice);
+                         
+                            if (remainingAmount <= 0){
+    							payStat = true;
+    						}
+    						else{
+    							payStat = false;
+    						}
+                    		
                     		if (payStat == false){
                                 //displays current paid amount and remaining amount to let users know how much more is to be paid
-                                System.out.println("------------------------------------------------------------");
+                                System.out.println("-----------------------------------------------------------");
                     			System.out.println("Current paid amount: RM"+ df.format(paidPrice));
                     			System.out.println("Remaining amount   : RM"+ df.format(remainingAmount)+"\nPlease insert more cash");
-                                System.out.println("------------------------------------------------------------");	
+                                System.out.println("-----------------------------------------------------------");	
                     		}
                         }
                         System.out.println("Remaining amount   : RM"+ df.format(remainingAmount));
