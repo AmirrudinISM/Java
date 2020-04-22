@@ -32,6 +32,9 @@ class SimpleRestaurantSystem{
 
 
         //prompt & get user wether to dine-in or take-away
+        //keep prompting user to dine-in or out until a valid input is entered
+        //6% tax is incurred if dine-in is selected. 
+        //no tax if dine-out selected
         while (dineInStat != true){
             System.out.print(">>>Would you like to DINE-IN? [y/n]: ");
             dineIn = new Scanner(System.in).next().charAt(0);
