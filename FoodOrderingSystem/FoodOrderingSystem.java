@@ -10,7 +10,7 @@ class FoodOrderingSystem{
 		
 
 		String order = " ";
-		double totalPrice = 0, selectedPrice = 0, payment = 0;
+		double totalPrice = 0, selectedPrice = 0, remainingPrice = 0, paidPrice = 0;
 		int quantity = 0;
 		//selection
 		int sel = 0;
@@ -31,23 +31,23 @@ class FoodOrderingSystem{
 		//select food
 		switch (sel){
 			case 1:
-				order += "Chicken Chop";
-				selectedPrice +=  8.9;
+				order = "Chicken Chop";
+				selectedPrice =  8.9;
 				break;
 			
 			case 2:
-				order += "Steak";
-				selectedPrice +=  12.9;
+				order = "Steak";
+				selectedPrice =  12.9;
 				break;
 
 			case 3:
-				order += "Fish & Chips";
-				selectedPrice +=  10.5;
+				order = "Fish & Chips";
+				selectedPrice =  10.5;
 				break;
 
 			case 4:
-				order += "Juice";
-				selectedPrice +=  4.0;
+				order = "Juice";
+				selectedPrice =  4.0;
 				break;
 
 			default:
@@ -55,17 +55,24 @@ class FoodOrderingSystem{
 				break;
 		}
 
-		//payment
+		//cost calculation
 		if (order != " "){
 			System.out.println("Food selected: " + order);
 			System.out.print(">>>Please enter quantity: ");
-			quantity += new Scanner(System.in).nextInt();
-			totalPrice += selectedPrice * quantity;
+			quantity = new Scanner(System.in).nextInt();
+			totalPrice = selectedPrice * quantity;
 			
-			while (totalPrice > 0){
-				System.out.println("Remaining price: "+df.format(totalPrice));				System.out.print(">>> Please enter payment: ");
-				payment += new Scanner(System.in).nextDouble();
-				totalPrice -= payment;
+			//"receipt"
+			System.out.println("Your order: " + order + ", Amount: "+quantity +", Total Price: " + df.format(totalPrice));
+			
+			//payment-prompt loop
+			//ends when remaining price is reduced to zero
+			remainingPrice = totalPrice;
+			while ((remainingPrice) > 0){
+				System.out.println("Remaining price: "+ df.format(remainingPrice));				
+				System.out.print(">>> Please enter payment: ");
+				paidPrice = new Scanner(System.in).nextDouble();
+				remainingPrice -= paidPrice;
 			}
 
 			System.out.println("Thank you!");
