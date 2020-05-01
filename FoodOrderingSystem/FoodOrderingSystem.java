@@ -25,10 +25,13 @@ class FoodOrderingSystem{
 		System.out.println("4.   Juice         |   RM  4.00");
 		System.out.println("--------------------------------");
 
+		//prompt & get sel
 		System.out.print(">>> Please select food or enter any number to cancel order: ");
 		sel = new Scanner(System.in).nextInt();
 		
 		//select food
+		//immeadiately exits system if user enters 
+		//anything besides the displayed items
 		switch (sel){
 			case 1:
 				order = "Chicken Chop";
@@ -55,7 +58,8 @@ class FoodOrderingSystem{
 				break;
 		}
 
-		//cost calculation
+		//if the user has selected any food item,
+		//proceed to cost calculation
 		if (order != " "){
 			System.out.println("Food selected: " + order);
 			System.out.print(">>>Please enter quantity: ");
