@@ -3,18 +3,20 @@ import java.text.DecimalFormat;
 
 class FoodOrderingSystem{
 	
+	//a library to format doubles to display only 2 decimal places
+	//used for displaying price
 	private static DecimalFormat df = new DecimalFormat("0.00");
 
 	public static void main(String[] args) {
-
-		
-
+		//variables needed for system's operation
 		String order = " ";
 		double totalPrice = 0, selectedPrice = 0, remainingPrice = 0, paidPrice = 0;
 		int quantity = 0;
+		
 		//selection
 		int sel = 0;
 		
+		//menu
 		System.out.println("================================");
 		System.out.println("   Welcome to Warung Cik Kiah   ");
 		System.out.println("================================");
@@ -29,8 +31,7 @@ class FoodOrderingSystem{
 		System.out.print(">>> Please select food or enter any number to cancel order: ");
 		sel = new Scanner(System.in).nextInt();
 		
-		//select food
-		//immeadiately exits system if user enters 
+		//select food or immediately exits system if user selects 
 		//anything besides the displayed items
 		switch (sel){
 			case 1:
@@ -58,8 +59,7 @@ class FoodOrderingSystem{
 				break;
 		}
 
-		//if the user has selected any food item,
-		//proceed to cost calculation
+		//if the user has selected any food item, proceed to cost calculation
 		if (order != " "){
 			System.out.println("Food selected: " + order);
 			System.out.print(">>>Please enter quantity: ");
@@ -67,13 +67,12 @@ class FoodOrderingSystem{
 			totalPrice = selectedPrice * quantity;
 			
 			//"receipt"
-			System.out.println("Your order: " + order + ", Amount: "+quantity +", Total Price: " + df.format(totalPrice));
+			System.out.println("Your order: " + order + ", Amount: "+quantity +", Total Price: RM" + df.format(totalPrice));
 			
-			//payment-prompt loop
-			//ends when remaining price is reduced to zero
+			//payment-prompt loop that ends when remaining price is reduced to zero
 			remainingPrice = totalPrice;
 			while ((remainingPrice) > 0){
-				System.out.println("Remaining price: "+ df.format(remainingPrice));				
+				System.out.println("Remaining price: RM"+ df.format(remainingPrice));				
 				System.out.print(">>> Please enter payment: ");
 				paidPrice = new Scanner(System.in).nextDouble();
 				remainingPrice -= paidPrice;
@@ -81,7 +80,6 @@ class FoodOrderingSystem{
 
 			System.out.println("Thank you!");
 		}
-
 		
 	}
 };
