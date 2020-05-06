@@ -5,6 +5,7 @@ class Tutorial4{
 			System.out.println(subject(3));	
 			System.out.println(average(21,14,33));
 			System.out.println(calculate(21,14,'/'));
+			System.out.println(sum(1,5));
 	}
 
 	//Q1
@@ -53,5 +54,16 @@ class Tutorial4{
 		}
 
 		return res;
+	}
+
+	//Q4
+	static int sum(int k, int n){
+		
+		
+		for (int i = 0; i < n; i++){
+			k+=k;
+		}
+
+		return k;
 	}
 };	
