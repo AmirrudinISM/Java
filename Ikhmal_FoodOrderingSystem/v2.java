@@ -21,7 +21,7 @@ public class v2 {
    	static double[] menuPrice= {6,5,4,3.50,2.50};
 
    	static ArrayList<String> orderName = new ArrayList<String>();
-   
+ 
    
 
      
@@ -127,7 +127,8 @@ public class v2 {
        	//do checking, valid input
        	if (mnumber >= 0 && mnumber <= 4){   
 	        menuNum.add(mnumber);
-	        System.out.println("key in quantity");
+	        System.out.println(menuName[mnumber]+ " selected");
+	        System.out.print("Key in quantity: ");
 	        int orderQuantity = input.nextInt();
 	        mQuantity.add(orderQuantity);
 	        System.out.println("|=====================================|");
