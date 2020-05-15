@@ -196,11 +196,12 @@ public class v2 {
 	}
 
   	public static void payment(){
-  		System.out.println("Your order costs RM:"+ df.format(finalPrice));
+  		System.out.println("Your order costs: RM"+ df.format(finalPrice));
+  		System.out.println("Remaining amount: RM"+ df.format(balance));
     	System.out.print(">>>Please insert payment RM: ");
-    	pay= input.nextDouble();
+    	pay += input.nextDouble();
 
-    	balance= pay - finalPrice;
+    	balance = finalPrice - pay;
     
     	if(pay >= finalPrice){
 
@@ -211,7 +212,7 @@ public class v2 {
       		for(int i=0; i < menuNum.size(); i++ ){
 
         		totalItem= menuPrice[menuNum.get(i)] * mQuantity.get(i);
-        		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+totalItem );
+        		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+df.format(totalItem));
         		System.out.println("|=====================================|");
     
       		}
@@ -219,13 +220,10 @@ public class v2 {
       		System.out.println("SST: RM"+ df.format(sst));
       		System.out.println("Service Charge: RM"+ df.format(serviceCharge));
       		System.out.println("Total Price: RM"+df.format(finalPrice));
-      		System.out.println("Balance: RM"+df.format(balance));
+      		System.out.println("Balance: RM"+df.format(balance*-1));
       		System.out.println("Thank You For Your Purchase");
 
     	}else{
-      		System.out.println("Payment not sufficient RM"+df.format(balance*(-1)));
-      		System.out.println("Please enter sufficient ammount");
-      		System.out.println("Total Price: RM"+df.format(finalPrice));
       		payment();
     	}
   	}
