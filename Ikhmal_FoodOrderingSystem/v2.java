@@ -17,7 +17,7 @@ public class v2 {
 
    	static Scanner input = new Scanner(System.in);
 
-   	static String[] menuName= {"Nasi Goreng Pataya","Bihun Goreng","Nasi Bujang","Milo Ice","Teh O Ice",};
+   	static String[] menuName= {"Nasi Goreng Pataya  ","Bihun Goreng        ","Nasi Bujang         ","Milo Ice            ","Teh O Ice           ",};
    	static double[] menuPrice= {6,5,4,3.50,2.50};
 
    	//static ArrayList<String> orderName = new ArrayList<String>();
@@ -28,11 +28,11 @@ public class v2 {
    	public static void main(String[] args) {
 
      
-     	System.out.println("Dine In Or Take Away?");
-     	System.out.println("If Dine In press (y) Or Take Away (n)");     
-     	takeAwayUpper = Character.toUpperCase(input.next().charAt(0));
+     	//System.out.print(">>>Dine-In (Y) Or Take-Away (N)?: ");     
+     	//takeAwayUpper = Character.toUpperCase(input.next().charAt(0));
       
       	checking();
+      	myMenu();
       	//order();
       	input.close();
 
@@ -44,32 +44,34 @@ public class v2 {
   	//the function will call itself again
   	//Else, it will execute menu()
   	static void checking(){
-
+  		System.out.print(">>>Dine-In (Y) Or Take-Away (N)?: ");     
+     	takeAwayUpper = Character.toUpperCase(input.next().charAt(0));
     	if (takeAwayUpper == 'Y') {
-    		System.out.println("Dine-In selected");
+    		System.out.println("DINE-IN selected");
       		dine = true;
-      		myMenu();
+      		//myMenu();
 
     	} else if (takeAwayUpper == 'N') {
-    		System.out.println("Take-Away selected");
+    		System.out.println("TAKE-AWAY selected");
       		dine = false;
-      		myMenu();
+      		//myMenu();
 
     	} else {
 
       		System.out.println("Please enter (Y) for Dine In Or  (N) for Take Away");
-      		takeAwayUpper = Character.toUpperCase(input.next().charAt(0));
+      		//ntakeAwayUpper = Character.toUpperCase(input.next().charAt(0));
 
-      		if (takeAwayUpper != 'Y' || takeAwayUpper != 'N') {
+      		//if (takeAwayUpper != 'Y' || takeAwayUpper != 'N') {
 
         		checking();
 
-      		} else {
+      		//} else {
 
-        		myMenu();
+        		//myMenu();
 
-      		}
+      		//}
     	}
+    	System.out.println("");
   	}
 
   	//prints out menuName & menuPrice array
@@ -79,34 +81,38 @@ public class v2 {
    	static void myMenu() {
 
      	//start menu//
-      	System.out.println("Menu");
+     	System.out.println("---------------------------------------");
+      	System.out.println("|     Welocome to Warung Cik Kiah     |");
+      	System.out.println("---------------------------------------");
+      	System.out.println(" No.|      FOOD NAME     | PRICE");
       	for(int i=0; i < menuName.length; i++ ){
      
-        	System.out.println(i+1 +"  ||"+ menuName[i]+"   RM"+ menuPrice[i]);
+        	System.out.println(" "+(i+1) +". |"+ menuName[i]+"|RM"+ df.format(menuPrice[i]));
 
       	}
-        System.out.println("6  ||Payment. ");
-        System.out.println("7  ||Cancel Order. ");
+      	System.out.println("---------------------------------------");
+        System.out.println(" 6. |PAYMENT ");
+        System.out.println(" 7. |CANCEL ORDER ");
    
         System.out.println("|=====================================|");
    
      	// end menu//
 
      	if(menuNum.size()!=0){
-          
+          	System.out.println("|--------------YOUR ORDER-------------|");
         	for(int i=0; i < menuNum.size(); i++ ){
 
           		totalItem= menuPrice[menuNum.get(i)] * mQuantity.get(i);
-          		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+totalItem );
+          		System.out.println(" "+(i+1)+". "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+totalItem );
      
       
         	}
 
 	        calculate();
 	        System.out.println("|=====================================|");
-	        System.out.println("SST: RM"+ df.format(sst));
-	        System.out.println("Service Charge: RM"+ df.format(serviceCharge));
-	        System.out.println("Total Price: RM"+df.format(finalPrice));   
+	        System.out.println("|SST:                        RM"+ df.format(sst));
+	        System.out.println("|Service Charge:             RM"+ df.format(serviceCharge));
+	        System.out.println("|Total Price:                RM"+ df.format(finalPrice));   
 
       	}
       	
@@ -118,7 +124,9 @@ public class v2 {
    	//then call the function again
    	public static void order(){
     	//select order
-    	System.out.println("Select your order");
+    	System.out.println("");
+    	System.out.println("Select your order or enter '6' for PAYMENT or '7' to cancel and exit");
+    	System.out.print(">>>Selection: ");
     	int mnumber = input.nextInt();
     	System.out.println("|=====================================|");
     	mnumber = mnumber-1;
@@ -128,10 +136,10 @@ public class v2 {
        	if (mnumber >= 0 && mnumber <= 4){   
 	        menuNum.add(mnumber);
 	        System.out.println(menuName[mnumber]+ " selected");
-	        System.out.print("Key in quantity: ");
+	        System.out.print(">>>Key in quantity: ");
 	        int orderQuantity = input.nextInt();
 	        mQuantity.add(orderQuantity);
-	        System.out.println("|=====================================|");
+	        System.out.println("");
 	        myMenu();
 	         
        	
@@ -141,8 +149,7 @@ public class v2 {
                 //loops menu again if order is empty
                 if(menuNum.size()==0){
 
-                    System.out.println("No food or beverage has been selected");
-                    System.out.println("Please select ");
+                    System.out.println("!!!!! No food or beverage has been selected !!!!");
                     myMenu();
 
                 //executes payment if there are ordered items
