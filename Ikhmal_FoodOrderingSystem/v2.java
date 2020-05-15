@@ -20,7 +20,7 @@ public class v2 {
    	static String[] menuName= {"Nasi Goreng Pataya","Bihun Goreng","Nasi Bujang","Milo Ice","Teh O Ice",};
    	static double[] menuPrice= {6,5,4,3.50,2.50};
 
-   	static ArrayList<String> orderName = new ArrayList<String>();
+   	//static ArrayList<String> orderName = new ArrayList<String>();
  
    
 
@@ -97,7 +97,7 @@ public class v2 {
         	for(int i=0; i < menuNum.size(); i++ ){
 
           		totalItem= menuPrice[menuNum.get(i)] * mQuantity.get(i);
-          		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+"  RM"+totalItem );
+          		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+totalItem );
      
       
         	}
@@ -196,8 +196,8 @@ public class v2 {
 	}
 
   	public static void payment(){
-
-    	System.out.println("PAYMENT RM:");
+  		System.out.println("Your order costs RM:"+ df.format(finalPrice));
+    	System.out.print(">>>Please insert payment RM: ");
     	pay= input.nextDouble();
 
     	balance= pay - finalPrice;
@@ -211,7 +211,7 @@ public class v2 {
       		for(int i=0; i < menuNum.size(); i++ ){
 
         		totalItem= menuPrice[menuNum.get(i)] * mQuantity.get(i);
-        		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+"  RM"+totalItem );
+        		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+totalItem );
         		System.out.println("|=====================================|");
     
       		}
@@ -223,7 +223,7 @@ public class v2 {
       		System.out.println("Thank You For Your Purchase");
 
     	}else{
-      		System.out.println("Payment not sufficient RM"+df.format(balance));
+      		System.out.println("Payment not sufficient RM"+df.format(balance*(-1)));
       		System.out.println("Please enter sufficient ammount");
       		System.out.println("Total Price: RM"+df.format(finalPrice));
       		payment();
