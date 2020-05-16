@@ -2,12 +2,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
 
-public class v2 {
+public class WarungCikKiahV2 {
 
 
 	static boolean dine=false,show=true;
 	static char takeAwayUpper,checkout;
-	static double price,totalItem,totalprice,serviceCharge,sst,finalPrice,pay,balance;
+	static double price,totalItem,totalprice,serviceCharge,sst,finalPrice,pay,balance, inPay;
 	static int i,quantity,indexMenuNum;
 	static DecimalFormat df = new DecimalFormat("0.00");
 	static ArrayList<Integer> menuNum = new ArrayList<Integer>();
@@ -32,6 +32,7 @@ public class v2 {
      	//takeAwayUpper = Character.toUpperCase(input.next().charAt(0));
       
       	checking();
+        System.out.println("");
       	myMenu();
       	//order();
       	input.close();
@@ -58,7 +59,7 @@ public class v2 {
 
     	} else {
 
-      		System.out.println("Please enter (Y) for Dine In Or  (N) for Take Away");
+      		System.out.println("Please enter (Y) for Dine-In Or  (N) for Take-Away");
       		//ntakeAwayUpper = Character.toUpperCase(input.next().charAt(0));
 
       		//if (takeAwayUpper != 'Y' || takeAwayUpper != 'N') {
@@ -71,7 +72,7 @@ public class v2 {
 
       		//}
     	}
-    	System.out.println("");
+    	
   	}
 
   	//prints out menuName & menuPrice array
@@ -110,9 +111,9 @@ public class v2 {
 
 	        calculate();
 	        System.out.println("|=====================================|");
-	        System.out.println("|SST:                        RM"+ df.format(sst));
-	        System.out.println("|Service Charge:             RM"+ df.format(serviceCharge));
-	        System.out.println("|Total Price:                RM"+ df.format(finalPrice));   
+	        System.out.println(" SST:                        RM"+ df.format(sst));
+	        System.out.println(" Service Charge:             RM"+ df.format(serviceCharge));
+	        System.out.println(" Total Price:                RM"+ df.format(finalPrice));   
 
       	}
       	
@@ -125,7 +126,7 @@ public class v2 {
    	public static void order(){
     	//select order
     	System.out.println("");
-    	System.out.println("Select your order or enter '6' for PAYMENT or '7' to cancel and exit");
+    	System.out.println("Select your order or enter '6' for PAYMENT or '7' to CANCEL and exit");
     	System.out.print(">>>Selection: ");
     	int mnumber = input.nextInt();
     	System.out.println("|=====================================|");
@@ -203,36 +204,51 @@ public class v2 {
 	}
 
   	public static void payment(){
-  		System.out.println("Your order costs: RM"+ df.format(finalPrice));
-  		System.out.println("Remaining amount: RM"+ df.format(balance));
-    	System.out.print(">>>Please insert payment RM: ");
-    	pay += input.nextDouble();
+  		System.out.println(" PAYMENT selected");
+
+        do{
+            System.out.println(" Your order costs: RM"+ df.format(finalPrice));
+            System.out.println(" Remaining amount: RM"+ df.format(finalPrice - pay));
+            System.out.print(">>>Please insert payment RM: ");
+            inPay = input.nextDouble();
+            if (inPay <= 0){
+                System.out.println(" Please insert amount that is greater than 0!");
+            }
+            else{
+                pay += inPay;
+            }
+
+            System.out.print("");
+
+        }while (pay < finalPrice); 
+        
 
     	balance = finalPrice - pay;
     
-    	if(pay >= finalPrice){
 
-      		System.out.println("|=====================================|");
-      		System.out.println("|==============RECEIPT================|");
-      		System.out.println("|=====================================|");
+  		System.out.println("|=====================================|");
+  		System.out.println("|==============RECEIPT================|");
+  		System.out.println("|=====================================|");
 
-      		for(int i=0; i < menuNum.size(); i++ ){
+  		for(int i=0; i < menuNum.size(); i++ ){
 
-        		totalItem= menuPrice[menuNum.get(i)] * mQuantity.get(i);
-        		System.out.println("No."+ (i+1)+" "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+df.format(totalItem));
-        		System.out.println("|=====================================|");
-    
-      		}
+    		totalItem= menuPrice[menuNum.get(i)] * mQuantity.get(i);
+    		System.out.println(" "+ (i+1)+". "+menuName[menuNum.get(i)]+" x" +mQuantity.get(i)+"  RM"+df.format(totalItem));
+    		//System.out.println("|=====================================|");
 
-      		System.out.println("SST: RM"+ df.format(sst));
-      		System.out.println("Service Charge: RM"+ df.format(serviceCharge));
-      		System.out.println("Total Price: RM"+df.format(finalPrice));
-      		System.out.println("Balance: RM"+df.format(balance*-1));
-      		System.out.println("Thank You For Your Purchase");
+  		}
+        System.out.println("|-------------------------------------|");
 
-    	}else{
-      		payment();
-    	}
+  		System.out.println(" SST:                        RM"+ df.format(sst));
+        System.out.println(" Service Charge:             RM"+ df.format(serviceCharge));
+        System.out.println(" Total Price:                RM"+ df.format(finalPrice)); 
+  		System.out.println("--------------------------------------");
+        System.out.println(" Paid amount:                RM"+ df.format(pay));
+        System.out.println(" Balance:                    RM"+ df.format(balance*-1));
+        System.out.println("--------------------------------------");
+  		System.out.println("*****Thank You For Your Purchase!*****");
+
+    	
   	}
 }
 
